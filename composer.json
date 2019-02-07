@@ -1,0 +1,31 @@
+{
+    "name": "web64/laravel-colors",
+    "description": "Laravel package for generating CLI output with awesome colors!",
+    "type": "library",
+    "require": {
+        "jakub-onderka/php-console-color": "^0.2.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Olav Hjertaker",
+            "email": "olav.hjertaker@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Web64\\Colors\\": "src/"
+        }
+    },
+    "extra":{
+        "laravel":{
+            "providers": [
+                "Web64\\Colors\\ColorsServiceProvider"
+            ],
+            "aliases": {
+                "Colors": "Web64\\Colors\\Facades\\Colors"
+            }
+        }
+    }
+}
