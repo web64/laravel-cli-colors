@@ -18,7 +18,7 @@ class LaravelColors{
     public function __construct($config)
     {
         $this->config = $config;
-        dump( $this->config );
+        //dump( $this->config );
         $this->consoleColor = new \JakubOnderka\PhpConsoleColor\ConsoleColor();
     }
 
@@ -61,10 +61,10 @@ class LaravelColors{
         return $this;
     }
 
-    public function rainbow($text)
+    public function rainbow($text, string $background_style = null)
     {
         $colors = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'light_gray', 'dark_gray', 'light_red', 'light_green', 'light_yellow', 'light_blue', 'light_magenta', 'light_cyan', 'white'];
-
+    
         $underline = $this->underline;
         $bold = $this->bold;
         $reverse = $this->reverse;
@@ -74,12 +74,32 @@ class LaravelColors{
         {
             $colorKey = array_rand($colors);
             $_style = $colors[$colorKey];
+            if ( !empty($background_style) )
+                $_style .= '__'.$background_style;
+
             $this->nobr()->underline($underline)->bold($bold)->reverse($reverse)->$_style($char);
         }
 
         $this->underline = false;
         $this->bold = false;
         $this->reverse = false;
+    }
+
+    /**
+     *  @param array $items
+     */
+    public function list($items)
+    {
+        
+    }
+
+    /**
+     *  @param string $header
+     *  @param string $content
+     */
+    public function box($header, $content = null)
+    {
+        
     }
 
     private function _fromConfig($name, $text)
@@ -157,36 +177,35 @@ class LaravelColors{
                 echo $this->consoleColor->apply($style, $style) . "\n";
             }
         }
-        return;
+        //return;
         echo "\n";
-        if ($this->consoleColor->are256ColorsSupported())
-        {
-            echo "Foreground colors:\n";
-            for ($i = 1; $i <= 255; $i++)
-            {
-                echo $this->consoleColor->apply("color_$i", str_pad($i, 6, ' ', STR_PAD_BOTH));
-                if ($i % 15 === 0) {
-                    echo "\n";
-                }
-            }
-            echo "\nBackground colors:\n";
-            for ($i = 1; $i <= 255; $i++)
-            {
-                echo $this->consoleColor->apply("bg_color_$i", str_pad($i, 6, ' ', STR_PAD_BOTH));
-                if ($i % 15 === 0) {
-                    echo "\n";
-                }
-            }
-            echo "\n";  
-        }
+        // if ($this->consoleColor->are256ColorsSupported())
+        // {
+        //     echo "Foreground colors:\n";
+        //     for ($i = 1; $i <= 255; $i++)
+        //     {
+        //         echo $this->consoleColor->apply("color_$i", str_pad($i, 6, ' ', STR_PAD_BOTH));
+        //         if ($i % 15 === 0) {
+        //             echo "\n";
+        //         }
+        //     }
+        //     echo "\nBackground colors:\n";
+        //     for ($i = 1; $i <= 255; $i++)
+        //     {
+        //         echo $this->consoleColor->apply("bg_color_$i", str_pad($i, 6, ' ', STR_PAD_BOTH));
+        //         if ($i % 15 === 0) {
+        //             echo "\n";
+        //         }
+        //     }
+        //     echo "\n";  
+        // }
 
         if ( $this->consoleColor->are256ColorsSupported() )
         {
-            
-            for ($c = 1; $c <= 16; $c++)
+            for ($bg = 1; $bg <= 16; $bg++)  
             {
                 
-                for ($bg = 1; $bg <= 16; $bg++)    
+                for ($c = 1; $c <= 16; $c++)      
                 {
                     echo $this->consoleColor->apply(["bg_color_$bg", "color_$c"], "bg_color_$bg - color_$c -- This is a TEST!! :)\n");
                 }
@@ -194,5 +213,19 @@ class LaravelColors{
                 echo "\n\n";
             }
         }
+    }
+
+    public function __logo()
+    {
+        $str = "
+         _                              _    ____      _                
+        | |    __ _ _ __ __ ___   _____| |  / ___|___ | | ___  _ __ ___ 
+        | |   / _` | '__/ _` \ \ / / _ \ | | |   / _ \| |/ _ \| '__/ __|
+        | |__| (_| | | | (_| |\ V /  __/ | | |__| (_) | | (_) | |  \__ \
+        |_____\__,_|_|  \__,_| \_/ \___|_|  \____\___/|_|\___/|_|  |___/
+
+";
+
+        $this->nobr()->bold()->rainbow($str, 'bg_black');
     }
 }
