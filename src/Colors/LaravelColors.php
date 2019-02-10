@@ -126,9 +126,6 @@ class LaravelColors{
 
     public function __call($name, $arguments)
     {
-        // Note: value of $name is case sensitive.
-        //echo "Calling object method '$name' " . implode(', ', $arguments). "\n";
-
         $name = str_replace([
             'lgray',
             'dgray',
@@ -161,6 +158,16 @@ class LaravelColors{
         else
             $styles = $name;
 
+
+        $styles = collect($styles)->map(function($style){
+            if ($style == 'b')              return 'bold';
+            if ($style == 'u')              return 'underline';
+            if ($style == 'rev')            return 'reverse';
+
+            return $style;
+
+        })->all();
+        //dd($styles);
         echo $this->consoleColor->apply(  $this->_getStyles($styles), $arguments[0]) . $this->endofline;
         $this->endofline = PHP_EOL;
     }
@@ -168,6 +175,12 @@ class LaravelColors{
     public function test()
     {
         echo "This is a test!"; 
+        foreach($this->config as $name => $config_styles)
+        {
+            $this->$name("Color::{$name}('This some sample text')");
+        }
+
+        return;
         
         echo "Colors are supported: " . ($this->consoleColor->isSupported() ? 'Yes' : 'No') . "\n";
         echo "256 colors are supported: " . ($this->consoleColor->are256ColorsSupported() ? 'Yes' : 'No') . "\n\n";
