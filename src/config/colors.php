@@ -21,7 +21,7 @@ return [
     'bgBlue'        => ['light_blue', 'bg_blue'],
     'bgMagenta'     => ['light_magenta', 'bg_magenta'],
     'bgCyan'        => ['light_cyan', 'bg_cyan'],
-    'bgtGray'       => ['light_gray', 'bg_gray'],
+    'bgGray'       => ['light_gray', 'bg_dark_gray'],
     'bgLightGray'   => ['gray', 'bg_light_gray'],
     'bgLightRed'    => ['red', 'bg_light_red'],
     'bgLightGreen'  => ['geen', 'bg_light_green'],

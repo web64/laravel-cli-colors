@@ -10,6 +10,7 @@ class LaravelColors{
     private $underline = false;
     private $bold = false;
     private $reverse = false;
+    private $italic = false;
     private $endofline = PHP_EOL;
 
     /**
@@ -43,6 +44,15 @@ class LaravelColors{
     /**
     *    @param boolean $value
     */
+    public function italic($value = true)
+    {
+        $this->italic = $value;
+        return $this;
+    }
+
+    /**
+    *    @param boolean $value
+    */
     public function reverse($value = true)
     {
         $this->reverse = $value;
@@ -61,13 +71,14 @@ class LaravelColors{
         return $this;
     }
 
-    public function rainbow($text, string $background_style = null)
+    public function rainbow($text, string $background_style = null, $breakLike = true )
     {
         $colors = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'light_gray', 'dark_gray', 'light_red', 'light_green', 'light_yellow', 'light_blue', 'light_magenta', 'light_cyan', 'white'];
     
         $underline = $this->underline;
         $bold = $this->bold;
         $reverse = $this->reverse;
+        $italic = $this->italic;
 
         $text_arr = str_split($text);
         foreach( $text_arr as $char)
@@ -77,20 +88,24 @@ class LaravelColors{
             if ( !empty($background_style) )
                 $_style .= '__'.$background_style;
 
-            $this->nobr()->underline($underline)->bold($bold)->reverse($reverse)->$_style($char);
+            $this->nobr()->underline($underline)->bold($bold)->italic($italic)->reverse($reverse)->$_style($char);
         }
+
+        if ( $breakLike )
+            echo $this->endofline;
 
         $this->underline = false;
         $this->bold = false;
         $this->reverse = false;
+        $this->italic = false;
     }
 
     /**
      *  @param array $items
      */
-    public function list($items)
+    public function list(array $items)
     {
-        
+        // TODO:  
     }
 
     /**
@@ -99,7 +114,7 @@ class LaravelColors{
      */
     public function box($header, $content = null)
     {
-        
+        // TODO: 
     }
 
     private function _fromConfig($name, $text)
@@ -116,12 +131,19 @@ class LaravelColors{
         if ($this->underline)   $styles[] = 'underline';
         if ($this->bold)        $styles[] = 'bold';
         if ($this->reverse)     $styles[] = 'reverse';
+        if ($this->italic)      $styles[] = 'italic';
 
         $this->underline = false;
         $this->bold = false;
         $this->reverse = false;
+        $this->italic = false;
 
         return $styles;
+    }
+
+    public function text($str)
+    {
+        $this->__call('default', [$str]);
     }
 
     public function __call($name, $arguments)
@@ -167,21 +189,13 @@ class LaravelColors{
             return $style;
 
         })->all();
-        //dd($styles);
+
         echo $this->consoleColor->apply(  $this->_getStyles($styles), $arguments[0]) . $this->endofline;
         $this->endofline = PHP_EOL;
     }
 
     public function test()
     {
-        echo "This is a test!"; 
-        foreach($this->config as $name => $config_styles)
-        {
-            $this->$name("Color::{$name}('This some sample text')");
-        }
-
-        return;
-        
         echo "Colors are supported: " . ($this->consoleColor->isSupported() ? 'Yes' : 'No') . "\n";
         echo "256 colors are supported: " . ($this->consoleColor->are256ColorsSupported() ? 'Yes' : 'No') . "\n\n";
         if ($this->consoleColor->isSupported())
@@ -228,17 +242,5 @@ class LaravelColors{
         }
     }
 
-    public function __logo()
-    {
-        $str = "
-         _                              _    ____      _                
-        | |    __ _ _ __ __ ___   _____| |  / ___|___ | | ___  _ __ ___ 
-        | |   / _` | '__/ _` \ \ / / _ \ | | |   / _ \| |/ _ \| '__/ __|
-        | |__| (_| | | | (_| |\ V /  __/ | | |__| (_) | | (_) | |  \__ \
-        |_____\__,_|_|  \__,_| \_/ \___|_|  \____\___/|_|\___/|_|  |___/
 
-";
-
-        $this->nobr()->bold()->rainbow($str, 'bg_black');
-    }
 }

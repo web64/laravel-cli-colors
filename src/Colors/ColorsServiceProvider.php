@@ -22,7 +22,11 @@ class ColorsServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		//
+	    if ($this->app->runningInConsole()) {
+			$this->commands([
+				\Web64\Colors\Commands\ColorsTest::class
+			]);
+		}
     }
 
     /**
@@ -34,7 +38,7 @@ class ColorsServiceProvider extends ServiceProvider
 	{
         $app = $this->app ?: app();
 
-        $this->mergeConfigFrom(__DIR__.'/../config/colors.php', 'nlp');
+        $this->mergeConfigFrom(__DIR__.'/../config/colors.php', 'colors');
 
         $this->publishes([
             __DIR__.'/../config/colors.php' => config_path('colors.php'),
