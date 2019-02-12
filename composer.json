@@ -1,5 +1,5 @@
 {
-    "name": "web64/laravel-colors",
+    "name": "web64/laravel-cli-colors",
     "description": "Laravel package for generating CLI output with awesome colors!",
     "type": "library",
     "require": {
