@@ -17,11 +17,6 @@ class ColorsTest extends Command
 
     public function handle()
     {
-        $this->logo();
-
-        $this->box_test();
-        exit;
-
         echo "\nCurrent Config based styles:\n";
         echo "-------------------------------------\n";
         $colorConfigs = config('colors');
@@ -56,7 +51,7 @@ class ColorsTest extends Command
         Colors::b__u__rev__blue("Colors::b__u__rev__blue('Short version')");
 
         
-        echo "\n\nShortcut Example:\n";
+        echo "\n\nShortcut Examples:\n";
         echo "-------------------------------------\n";
         Colors::underline()->magenta("Colors::underline()->magenta('With Underline')");
         Colors::lgreen("Colors::lgreen('light green default')");
@@ -85,12 +80,14 @@ class ColorsTest extends Command
         echo "-------------------------------------\n";
         $_start = time();
         do{
-            Colors::reverse()->rainbow("LARAVEL COLORS!!!", null, false);
             echo "\r";
+            Colors::reverse()->rainbow("LARAVEL COLORS!!!", null, false);
+            
             sleep(0.7);
         }while( (time() - $_start) < 5);
-
         echo PHP_EOL . PHP_EOL;
+
+        $this->logo();
     }
 
     private function logo()
