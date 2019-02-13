@@ -169,13 +169,13 @@ class LaravelColors{
         ], $name);
 
 
-        if ( !empty($this->config[$name]) )
+        if ( !is_array($name) && !empty($this->config[$name]) )
         {
             $this->_fromConfig($name, $arguments[0]);
             return;
         }
 
-        if ( strpos($name, "__") )
+        if ( !is_array($name) && strpos($name, "__") )
             $styles = explode("__", $name);
         else
             $styles = $name;
@@ -183,6 +183,7 @@ class LaravelColors{
 
         $styles = collect($styles)->map(function($style){
             if ($style == 'b')              return 'bold';
+            if ($style == 'i')              return 'italic';
             if ($style == 'u')              return 'underline';
             if ($style == 'rev')            return 'reverse';
 

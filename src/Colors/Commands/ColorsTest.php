@@ -7,7 +7,7 @@ use Web64\Colors\Facades\Colors;
 
 class ColorsTest extends Command
 {
-    protected $signature = 'colors:test';
+    protected $signature = 'colors:test {--config}';
     protected $description = 'Example usage of the Colors package';
 
     public function __construct()
@@ -24,6 +24,9 @@ class ColorsTest extends Command
         {
             Colors::$name("Color::{$name}()");
         }
+
+        if ( $this->option('config') )  return;
+
 
         echo "\n\nDefault Text Colors:\n";
         echo "-------------------------------------\n";
@@ -81,7 +84,7 @@ class ColorsTest extends Command
         $_start = time();
         do{
             echo "\r";
-            Colors::reverse()->rainbow("LARAVEL COLORS!!!", null, false);
+            Colors::reverse()->rainbow("LARAVEL CLI COLORS!!!", null, false);
             
             sleep(0.7);
         }while( (time() - $_start) < 5);
