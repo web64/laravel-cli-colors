@@ -119,6 +119,11 @@ Colors::rainbow('Text');
 Colors::reverse()->rainbow('Text');
 ```
 
+## Samples
+![Default Config](https://cdn.web64.com/github/colors-config.png)
+![Text Colors](https://cdn.web64.com/github/colors-text.png)
+![Background Colors](https://cdn.web64.com/github/colors-background.png)
+
 ## Contribute
 Let me know if you have any ideas on how to improve this package! 
 
