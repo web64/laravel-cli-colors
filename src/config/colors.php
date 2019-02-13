@@ -40,7 +40,7 @@ return [
     'updated'   => ['black', 'bg_yellow'],
     'deleted'   => ['white', 'bg_red'],
 
-    // 
+    // Background themes
     'bgRed'         => ['light_red', 'bg_red'],
     'bgGreen'       => ['light_green', 'bg_green'],
     'bgYellow'      => ['light_yellow', 'bg_yellow'],
