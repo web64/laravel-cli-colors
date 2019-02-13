@@ -16,7 +16,10 @@ To publish the colors.php config file run
 ```bash
 php artisan vendor:publish --provider="Web64\Colors\ColorsServiceProvider" --tag="config"
 ```
-
+Run this command to see a sample of how use can use Laravel CLI Colors.
+```bash
+php artisan colors:test 
+```
 
 ## Quick Start
 ```php
@@ -114,12 +117,6 @@ Colors::rainbow('Text');
 
 // Random background colors:
 Colors::reverse()->rainbow('Text');
-```
-
-## Demo
-Run this command to see a sample of how use can use Laravel CLI Colors.
-```bash
-php artisan colors:test 
 ```
 
 ## Contribute
