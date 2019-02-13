@@ -57,7 +57,7 @@ The colors.php config file already has a list of pre-defined styles. Feel free t
 ```php
 // Laravel-style output
 Colors::info('Green text');
-Colors::info('Black text on');
+Colors::question('Black text on light blue background');
 ```
 
 # View & Validate Custom Styles
