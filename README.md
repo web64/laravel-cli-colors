@@ -1,6 +1,6 @@
 # Laravel CLI COLORS
 <p align="center">
-    <img src="http://cdn.web64.com/nlp-norway/laravel-colors.png" width="400">
+    <img src="http://cdn.web64.com/nlp-norway/laravel-colors-2.png" width="400">
 </p>
 
 Laravel CLI Colors is a simple package, based on the [jakub-onderka/php-console-color](https://github.com/JakubOnderka/PHP-Console-Color) library, that makes it easy to output text in various colors and styles.
