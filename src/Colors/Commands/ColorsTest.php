@@ -43,7 +43,7 @@ class ColorsTest extends Command
 
         echo "\n\nDefault Styles:\n";
         echo "-------------------------------------\n";
-        $styles = [ 'bold', 'italic', 'underline', 'reverse'];
+        $styles = [ 'bold', 'italic', 'reverse', 'underline'];
         foreach($styles as $style)
             Colors::$style()->text("Colors::{$style}()->text()");
 
