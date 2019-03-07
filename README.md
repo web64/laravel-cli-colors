@@ -1,4 +1,7 @@
 # Laravel CLI COLORS
+<p align="center">
+    <img src="http://cdn.web64.com/nlp-norway/laravel-colors.png" width="400">
+</p>
 
 Laravel CLI Colors is a simple package, based on the [jakub-onderka/php-console-color](https://github.com/JakubOnderka/PHP-Console-Color) library, that makes it easy to output text in various colors and styles.
 
@@ -58,6 +61,12 @@ The colors.php config file already has a list of pre-defined styles. Feel free t
 // Laravel-style output
 Colors::info('Green text');
 Colors::question('Black text on light blue background');
+
+// Model changed styles
+Colors::created("Green bg to indicate model was created");
+Colors::updated("Yellow bg to indicate model was updated");
+Colors::deleted("Red bg to indicate model was deleted");
+
 ```
 
 # View & Validate Custom Styles
