@@ -3,7 +3,7 @@
   "description": "Laravel package for generating CLI output with awesome colors!",
   "type": "library",
   "require": {
-    "composer require php-parallel-lint/php-console-color": "^0.3"
+    "php-parallel-lint/php-console-color": "^0.3"
   },
   "license": "MIT",
   "authors": [
